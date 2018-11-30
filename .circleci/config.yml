@@ -24,3 +24,24 @@ jobs:
       # specify any bash command here prefixed with `run: `
       # - run: go get -v -t -d ./...
       # - run: go test -v ./...
+
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.11
+    working_directory: /go/src/github.com/zeako/git=test
+    steps:
+      - checkout
+      - run: docker build . -t erez/git-test
+  test:
+    docker:
+      - image: circleci/golang:1.11
+    steps:
+      - checkout
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test
