@@ -30,7 +30,7 @@ jobs:
   build:
     machine: true
       # - image: circleci/golang:1.11
-    working_directory: /go/src/github.com/zeako/git-test
+    # working_directory: /go/src/github.com/zeako/git-test
     steps:
       - checkout
       - run: docker build . -t erez/git-test
